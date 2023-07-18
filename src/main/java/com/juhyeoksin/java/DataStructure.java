@@ -1,6 +1,7 @@
 package com.juhyeoksin.java;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * 정수 리스트 num_list 가 주어질 때,
@@ -15,7 +16,7 @@ public class DataStructure {
 
 
     /*
-       int[] num_list = new int[]{10 ,20 ,30, 33, -2, 2, 5}
+       int[] num_list = new int[]{10 ,20 ,30, 33,  2, 5}
        int[] num_list1 = {10 ,20 ,30, 33, -1, 2, 5} ; // new 생략 가능
     */
     public int solution(int[] num_list) {
@@ -24,7 +25,7 @@ public class DataStructure {
         //첫 번째로 나오는 음수의 인덱스
         for (int i = 0; i < num_list.length; i++) {
             System.out.println("num_list[i] :: " + num_list[i]);
-            System.out.println("answer = i " + i);  // 4
+            System.out.println("answer = i " + i);
 
             if (num_list[i] < 0) {
                 answer = i;
@@ -34,6 +35,12 @@ public class DataStructure {
         System.out.println("answer -> " + answer);
         return answer;
      }
+    // 다른 방식 풀이
+    public int solutionRefactoring(int[] num_list) {
+        final int LENGTH = num_list.length;
+        return  IntStream.range(0, LENGTH).filter(i -> num_list[i] < 0).findFirst().orElse(-1);
+    }
+
     @Override
     public String toString() {
         return "DataStructure [num_list=" + Arrays.toString(num_list) + "]";
